@@ -26,6 +26,12 @@ class BirdByID(Resource):
     def get(self, id):
         bird = Bird.query.filter_by(id=id).first().to_dict()
         return make_response(jsonify(bird), 200)
+    
+class home(Resource):
+    
+    def get(self):
+        return f'<h1>Welcome to the Bird App!</h1'
 
+api.add_resource(home, '/')
 api.add_resource(Birds, '/birds')
 api.add_resource(BirdByID, '/birds/<int:id>')
